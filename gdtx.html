@@ -16,7 +16,7 @@
       background-color: white;
       padding: 20px;
       border-radius: 5px;
-      box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       margin: 0 auto;
     }
@@ -56,21 +56,16 @@
       font-weight: bold;
       margin-top: 20px;
     }
-
-    .lg {
-      display: flex;
-      justify-content: center;
-      margin-top: -20px;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 
 <body>
-  <div class="lg"><img src="./logo-removebg-preview.png"></div>
+  <img src="https://itc.edu.vn/Data/Sites/1/media/img/logo.png">
   <div class="container">
-    <h3>Tính Điểm Tốt Nghiệp THPT (GDTX)</h3> <label for="math">Điểm Toán:</label> <input type="number" id="math"
-      min="0" max="10" step="0.1" required>
+    <h3>Tính Điểm Tốt Nghiệp THPT (GDTX)</h3>
+    <label for="math">Điểm Toán:</label>
+    <input type="number" id="math" min="0" max="10" step="0.1" required>
+
     <label for="literature">Điểm Ngữ Văn:</label>
     <input type="number" id="literature" min="0" max="10" step="0.1" required>
 
@@ -81,26 +76,31 @@
     <input type="number" id="grade-12" min="0" max="10" step="0.1" required>
 
     <label for="bonus">Điểm Khuyến Khích:</label>
-    <input type="number" id="bonus" min="0" max="10" step="0.1" value="0" required>
-
+     <input type="number" id="bonus" min="0" max="10" step="0.1" required>
     <label for="priority">Điểm Ưu Tiên:</label>
-    <input type="number" id="priority" min="0" max="10" step="0.1" value="0" required>
+    <input type="number" id="priority" min="0" max="10" step="0.1" required>
 
     <button onclick="calculateGrade()">Tính Điểm</button>
     <div id="result"></div>
-    <div class=""><a href="./index.html">THPT</a></div>
+    <div class=""><a href="./thpt.html">THPT</a></div>
   </div>
-  <script> function calculateGrade() { 
-  const math = parseFloat(document.getElementById("math").value); 
-  const literature = parseFloat(document.getElementById("literature").value); 
-  const groupExam = parseFloat(document.getElementById("group-exam").value); 
-  const grade12 = parseFloat(document.getElementById("grade-12").value); 
-  const bonus = parseFloat(document.getElementById("bonus").value); 
-  const priority = parseFloat(document.getElementById("priority").value); 
-  const totalExamPoints = (math + literature + groupExam) / 3; 
-  const totalBonusPoints = bonus / 4; 
-  const finalGrade = ((totalExamPoints * 7 + grade12 * 3) / 10 + priority); 
-  document.getElementById("result").textContent = `Điểm Tốt Nghiệp THPT của bạn là: ${finalGrade.toFixed(2)}`; } </script>
+
+  <script>
+    function calculateGrade() {
+      const math = parseFloat(document.getElementById("math").value);
+      const literature = parseFloat(document.getElementById("literature").value);
+      const groupExam = parseFloat(document.getElementById("group-exam").value);
+      const grade12 = parseFloat(document.getElementById("grade-12").value);
+      const bonus = parseFloat(document.getElementById("bonus").value);
+      const priority = parseFloat(document.getElementById("priority").value);
+
+      const totalExamPoints = (math + literature + groupExam) / 3;
+      const totalBonusPoints = bonus / 4;
+      const finalGrade = ((totalExamPoints + totalBonusPoints) * 7 + (grade12 * 3)) / 10 + priority;
+
+      document.getElementById("result").textContent = `Điểm Tốt Nghiệp THPT của bạn là: ${finalGrade.toFixed(2)}`;
+    }
+  </script>
 </body>
 
 </html>
